@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Inicio - Detective</title>
+    <style>
+        /* Estilos generales */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #3e2723, #1b1b1b);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Barra superior (simula barra de notificaciones) */
+        .status-bar {
+            width: 100%;
+            height: 30px;
+            background: #222;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 14px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .status-bar .time {
+            font-weight: bold;
+        }
+
+        .status-bar .icons img {
+            width: 18px;
+            margin-left: 10px;
+        }
+
+        /* Contenedor principal */
+        .home-screen {
+            width: 100%;
+            padding: 50px 15px 0; /* Añadir espacio superior para la barra de estado */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Botones de aplicaciones */
+        .app-button {
+            background: rgba(50, 50, 50, 0.8);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .app-button:hover {
+            transform: scale(1.1);
+            background: rgba(100, 100, 100, 0.9);
+        }
+
+        .app-button img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .app-button span {
+            display: block;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* Sección de barra de códigos */
+        .code-section {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .code-section input {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .code-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #e60000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .code-section button:hover {
+            background-color: #b50000;
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de estado -->
+    <div class="status-bar">
+        <span class="time">10:45 AM</span>
+        <div class="icons">
+            <img src="https://via.placeholder.com/20?text=WiFi" alt="WiFi">
+            <img src="https://via.placeholder.com/20?text=B" alt="Batería">
+        </div>
+    </div>
+
+    <!-- Pantalla de inicio -->
+    <div class="home-screen" id="homeScreen">
+        <!-- Aplicaciones iniciales -->
+        <div class="app-button" onclick="location.href='https://www.guiadetectives.com/';">
+            <img src="https://i.postimg.cc/nVjH6dt9/Detectives.jpg" alt="Guia detective">
+            <span>Guia Detective</span>
+        </div>
+        <div class="app-button" onclick="location.href='https://www.google.com';">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google">
+            <span>Google</span>
+        </div>
+        <div class="app-button" onclick="location.href='https://letrozma.github.io/Policia-de-Kingstone/';">
+            <img src="https://i.postimg.cc/JhtP4Hx0/Policia.jpg" alt="Centro de Policia">
+            <span>Centro de Policia</span>
+        </div>
+        <div class="app-button" onclick="location.href='https://www.wikipedia.org';">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" alt="Wikipedia">
+            <span>Wikipedia</span>
+        </div>
+        <div class="app-button" onclick="location.href='https://www.camscanner.com/es-es';">
+            <img src="https://i.postimg.cc/kghXtLQs/Camscaner.webp" alt="CamScanner">
+            <span>CamScanner</span>
+        </div>
+    </div>
+
+    <!-- Barra de códigos -->
+    <div class="code-section">
+        <input type="text" id="appCode" placeholder="Escribe un código de instalación">
+        <button onclick="addApp()">Enviar</button>
+    </div>
+
+    <script>
+        // Función para agregar una nueva aplicación
+        function addApp() {
+            const code = document.getElementById("appCode").value;
+            const homeScreen = document.getElementById("homeScreen");
+
+            if (code === "222631268") {
+                // Crear nueva aplicación
+                const newApp = document.createElement("div");
+                newApp.classList.add("app-button");
+                newApp.innerHTML = `
+                    <img src="https://i.postimg.cc/ZYGTZrT7/CSV.png" alt="CSV">
+                    <span>CSV App</span>
+                `;
+                newApp.onclick = () => location.href = "https://letrozma.github.io/CSV/";
+                homeScreen.appendChild(newApp);
+                alert("¡Nueva aplicación instalada!");
+            } else if (code === "222639528") {
+                const newApp = document.createElement("div");
+                newApp.classList.add("app-button");
+                newApp.innerHTML = `
+                    <img src="https://i.postimg.cc/ZYGTZrT7/CSV.png" alt="Nueva App">
+                    <span>Nueva App</span>
+                `;
+                newApp.onclick = () => location.href = prompt("Ingresa el enlace para la nueva aplicación:");
+                homeScreen.appendChild(newApp);
+                alert("¡Nueva aplicación instalada!");
+            } else {
+                alert("Código no válido. Intenta de nuevo.");
+            }
+
+            document.getElementById("appCode").value = "";
+        }
+    </script>
+</body>
+</html>
